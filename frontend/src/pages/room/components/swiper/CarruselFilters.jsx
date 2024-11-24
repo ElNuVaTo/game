@@ -12,7 +12,7 @@ const CarruselFilters = ({
 }) => {
   return (
     <>
-      <Carrusel id="slider2">
+      <Carrusel position={-28}>
         <div className="flex gap-[50px] items-end">
           {/* Buscar por nombre */}
           <div className="relative w-full max-w-56">

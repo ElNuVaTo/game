@@ -4,10 +4,11 @@ import http from "http";
 import { Server } from "socket.io";
 
 // Archivos
-import app from "./server.js";
 import dataBase from "./database.js";
+import app from "./server.js";
 import handleSocketEvents from "./controllers/socket.js";
 
+// Mantenimiento de la base de datos
 dotenv.config();
 
 // Crear el servidor HTTP usando la app de Express

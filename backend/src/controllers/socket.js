@@ -1,11 +1,10 @@
-import Lobby from "../models/lobby.js";
+import Lobby from "../models/room.js";
 
 const handleSocketEvents = (socket) => {
   console.log("Cliente conectado: Servidor", socket.id);
 
   // Cuando un jugador entra al lobby (esto podría estar en un evento de tipo 'join')
   socket.on("El ID de la sala es:", async (lobbyID) => {
-
     try {
       // Busca el lobby y actualiza la lista de jugadores
       const lobby = await Lobby.findById(lobbyID).populate(

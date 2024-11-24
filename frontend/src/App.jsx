@@ -1,4 +1,3 @@
-import React from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -7,24 +6,51 @@ import {
 } from "react-router-dom";
 
 // Pages
-import Auth from "@/pages/auth/Auth";
+import Invited from "@/pages/auth/Invited";
+import AuthJoin from "@/pages/auth/AuthJoin";
+import AuthRegister from "@/pages/auth/AuthRegister";
+
 import Room from "@/pages/room/Room";
-import InGame from "@/pages/room-in-game/InGame";
 
 // Routers Frontend
-import ROUTER from "@/router/Router";
 import Chat from "./layout/chat/Chat";
+import Bg from "./layout/bg/Bg";
+import Nav from "./layout/navegacion/Nav";
+import Card from "./components/Card";
+
+const i = import.meta.env;
+
+const ROUTER = {
+  home: i.VITE_HOME,
+  login: i.VITE_LOGIN,
+  register: i.VITE_REGISTER,
+
+  //Despues de iniciar sesion  de cualquier forma
+  room: i.VITE_ROOM,
+  roomIngame: "",
+
+  profile: "",
+  creation: i.VITE_CREATION,
+
+  admin: "",
+};
 
 // Layout Global
 const LayoutGlobal = () => {
-  const location = useLocation(); // Usa una constante en lugar de sobrescribir location
+  const location = useLocation();
 
-  // Ejemplo: Lógica condicional para personalizar el layout según la ruta
-  const Auth = location.pathname === ROUTER.AUTH;
+  // Verifica las rutas
+  console.log("Current Path:", location.pathname);
+  console.log("Home Path:", ROUTER.home);
+
+  // Verifica si la ruta actual es home, login o register
+  const isAuthRoute = [ROUTER.home, ROUTER.login, ROUTER.register].includes(
+    location.pathname
+  );
 
   return (
     <>
-      {!Auth && <Chat />}
+      {!isAuthRoute && <Nav />}
 
       <Outlet />
     </>
@@ -37,16 +63,25 @@ const router = createBrowserRouter([
     element: <LayoutGlobal />, // Renderiza LayoutGlobal como contenedor
     children: [
       {
-        path: ROUTER.AUTH,
-        element: <Auth />,
+        path: ROUTER.home,
+        element: <Invited />,
       },
       {
-        path: ROUTER.ROOM,
+        path: ROUTER.login,
+        element: <AuthJoin />,
+      },
+      {
+        path: ROUTER.register,
+        element: <AuthRegister />,
+      },
+      {
+        path: ROUTER.room,
         element: <Room />,
       },
+
       {
-        path: ROUTER.ROOM_IN_GAME,
-        element: <InGame />,
+        path: ROUTER.creation,
+        element: <Room />,
       },
     ],
   },
@@ -55,6 +90,7 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
+      <Bg />
       <RouterProvider router={router} />
     </>
   );

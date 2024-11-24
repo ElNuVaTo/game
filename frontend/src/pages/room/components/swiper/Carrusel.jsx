@@ -1,77 +1,97 @@
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
-
-// CSS
-import "swiper/css";
-import "swiper/css/navigation";
-
-// Módulos
-import { Navigation, A11y } from "swiper/modules";
+import { useRef, useState, useEffect } from "react";
+import { motion, useMotionValue } from "framer-motion";
 
 // Componentes
-import Slide from "./Slide";
+import Card from "@/components/Card";
 
-// Env
-const urlGet = import.meta.env.VITE_API_GET_QUIZZES;
+const Carrusel = ({ position }) => {
+  const x = useMotionValue(0);
+  const sliderWrapperRef = useRef(null);
 
-const Carrusel = ({ children, id }) => {
-  const [data, setData] = useState([]);
+  const [xMotion, setMotion] = useState();
 
+  // Usamos un useEffect que espere a que el ref esté disponible
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(urlGet); // Hacer el GET a la URL de la API
-        setData(response.data);
-      } catch (error) {
-        console.error("Error al obtener los quizzes", error); // Manejo de errores
-      }
-    };
+    const width =
+      sliderWrapperRef.current.scrollWidth -
+      sliderWrapperRef.current.offsetWidth;
 
-    fetchData();
+    setMotion(width);
+
+    console.log(width);
   }, []);
 
   return (
     <>
-      <div className="w-screen">
-        <div className="text-2xl font-bold tracking-tight ml-[50px] relative select-none">
-          {children}
-        </div>
+      <div className="slider-container cursor-grab relative">
+        <span className="h-full w-16 bg-black right-0 absolute z-[2] decorative-gradient-r opacity-80" />
+        <span className="h-full w-16 bg-black left-0 absolute z-[2] decorative-gradient-l opacity-80" />
 
-        <div className=" py-5 relative">
-          <Swiper
-            modules={[Navigation, A11y]}
-            navigation={{
-              nextEl: `.swiper-button-next-${id}`,
-              prevEl: `.swiper-button-prev-${id}`,
-            }}
-            grabCursor={true}
-            slidesPerView={7}
-            spaceBetween={0}
-            slidesOffsetBefore={50}
-            slidesOffsetAfter={50}
-            className="mySwiper"
-          >
-            {Array(10)
-              .fill([...data])
-              .flat()
-              .map((item, index) => (
-                <SwiperSlide key={item._id + index}>
-                  <Slide
-                    index={item._id}
-                    authorData={item.author}
-                    bannerData={item.mainContent}
-                  />
-                </SwiperSlide>
-              ))}
-          </Swiper>
-
-          <span className="h-full w-20 absolute left-0 top-0 z-10 bg-swiper-shadow-l rounded-r-3xl "></span>
-          <span className="h-full w-20 absolute right-0 top-0 z-10 bg-swiper-shadow-r rounded-l-3x1"></span>
-
-          <div className={`swiper-button-prev-${id} swiper-button-prev`}></div>
-          <div className={`swiper-button-next-${id} swiper-button-next`}></div>
-        </div>
+        <motion.div
+          ref={sliderWrapperRef}
+          drag="x"
+          dragConstraints={{ right: 0, left: -xMotion }}
+          className={`${position} slider-wrapper`}
+          dragMomentum={false}
+          dragElastic={0.2}
+          style={{ touchAction: "none", x }}
+          initial={{ x: position }}
+        >
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </motion.div>
       </div>
     </>
   );

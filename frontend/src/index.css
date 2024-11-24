@@ -8,133 +8,228 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(0, 0, 0, 0.87);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --swiper-navigation-size: 30px !important;
-  --swiper-navigation-top-offset: 50%;
-  --swiper-navigation-sides-offset: 15px;
-  --swiper-navigation-color: white;
+  --body-color: #404044;
+
+  --main-color: #1a1a1d;
+  --main-color-deg: #232121;
+  --main-color-modal: #201e1e;
+
+  --second-color: #83bbe2;
+  --second-color-deg: #0285e2;
+  --color-icons: #dbdbdb;
+}
+
+/* // Para usar en tailwind  */
+@layer utilities {
+  .bg-body-color {
+    background-color: var(--main-color);
+  }
+  .bg-body-modal {
+    background-color: var(--main-color-modal);
+  }
+
+  .bg-second-color {
+    background-color: var(--second-color);
+  }
+  .bg-second-color-focus {
+    background-color: var(--second-color-deg);
+  }
+
+  .border-second-color-focus {
+    border-color: var(--second-color-deg);
+  }
+  .border-second-color {
+    border-color: var(--second-color);
+  }
+
+  .icons-color {
+    color: var(--color-icons);
+  }
+}
+
+.Bg {
+  flex: none;
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: -10;
 }
 
 html {
-  height: -webkit-fill-available;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body {
+  background: var(--body-color);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
-  background: #040511;
-  height: 100vh;
-  height: -webkit-fill-available;
+  font-weight: normal;
 }
 
-.dark {
-  border-color: #0c1427;
+ol,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+input {
+  outline: none;
+  border: none;
 }
 
-.inverted-border-left {
-  width: 15px;
-  height: 15px;
-  background: #0c1427;
-  overflow: hidden;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.inverted-border-left::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  background: #040511;
-  z-index: 1;
-  border-top-right-radius: 40px;
-  box-shadow: 0 40px 0 #040511;
+/* !! Cualquier clase ponerla de aca, para abajo ¡¡  */
+/* Ser lo mas descriptivo posible en la clase */
+
+.no-interaction {
+  pointer-events: none;
+  user-select: none;
+  z-index: -5;
 }
 
-.inverted-border-right {
-  width: 15px;
-  height: 15px;
-  background: #0c1427;
-  overflow: hidden;
+.decorative-gradient-t {
+  background: var(--main-color-deg);
+  background: linear-gradient(0deg, var(--main-color-deg) 0%, transparent);
 }
 
-.inverted-border-right::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  background: #040511;
-  z-index: 1;
-  border-top-left-radius: 40px;
-  box-shadow: 0 40px 0 #040511;
+.decorative-gradient-b {
+  background: var(--main-color-deg);
+  background: linear-gradient(901deg, var(--main-color-deg) 0%, transparent);
+}
+.decorative-gradient-l {
+  background: var(--main-color-deg);
+  background: linear-gradient(90deg, var(--main-color-deg) 0%, transparent);
+}
+.decorative-gradient-r {
+  background: var(--main-color-deg);
+  background: linear-gradient(280deg, var(--main-color-deg) 0%, transparent);
 }
 
-.lineaLogin {
-  background: rgb(4, 5, 17);
-  background: -moz-linear-gradient(
-    0deg,
-    rgba(4, 5, 17, 1) 0%,
-    rgba(12, 20, 39, 1) 50%,
-    rgba(4, 5, 17, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    0deg,
-    rgba(4, 5, 17, 1) 0%,
-    rgba(12, 20, 39, 1) 50%,
-    rgba(4, 5, 17, 1) 100%
-  );
-  background: linear-gradient(
-    0deg,
-    rgba(4, 5, 17, 1) 0%,
-    rgba(12, 20, 39, 1) 50%,
-    rgba(4, 5, 17, 1) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#040511",endColorstr="#040511",GradientType=1);
+.decorative-corners-triangle {
+  background-color: var(--main-color-deg);
+  clip-path: polygon(0 0, 0% 100%, 100% 100%);
 }
 
-/* Contenedor para la línea */
-.line-container {
-  position: absolute;
+.bgContainer {
   width: 100%;
-  height: 2px;
-  background-color: #0b1220; /* Color de la línea */
-  display: flex;
-  align-items: center;
-
-  background: rgb(255, 255, 255);
-  background: -moz-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(11, 18, 32, 1) 70%
-  );
-  background: -webkit-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(11, 18, 32, 1) 70%
-  );
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(11, 18, 32, 1) 70%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#0b1220",GradientType=1);
+  height: 100dvh;
+  background: var(--main-color);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.line-container::before {
+.photoHome::after {
   content: "";
   position: absolute;
-  height: 10px;
-  width: 10px;
-  transform: rotate(45deg);
-  right: 0;
-  background-color: #0b1220; /* Color de la línea */
+  height: 3px;
+  width: 150px;
+  right: 100px;
+  top: calc(50% - 3px);
+  box-sizing: border-box;
+  background: var(--main-color-deg);
+  background: linear-gradient(
+    280deg,
+    var(--main-color-deg) 0%,
+    var(--main-color) 100%
+  );
+}
+
+.photoHome::before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 150px;
+  left: 100px;
+  top: calc(50% - 3px);
+  box-sizing: border-box;
+  background: var(--main-color-deg);
+  background: linear-gradient(
+    90deg,
+    var(--main-color-deg) 0%,
+    var(--main-color) 100%
+  );
+}
+.mask-card-img {
+  mask-image: linear-gradient(black 50%, transparent);
+}
+
+.card-author-gradient {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    280deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.slider-container {
+  overflow: hidden;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    #00000000 -10%,
+    var(--main-color-deg) 50%,
+    #ffffff00 110%
+  );
+}
+
+.slider-wrapper {
+  display: flex;
+  gap: 0 40px;
+  padding: 20px;
+  padding-left: 24px;
+}
+
+.slider-initial-position-top {
+  transform: translateX(-202px);
+}
+
+.slider-initial-position-bottom {
+  transform: translateX(-402px);
+}
+
+.slider-item {
+  flex: 0 0 auto;
+}
+
+.no-deformed-width {
+  flex: 0 0 auto;
+}
+
+.chat-author-colored::before {
+  content: attr(data-before);
+  color: #0285e2;
+  
 }
