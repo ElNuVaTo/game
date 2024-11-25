@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
 
 import JoinAuthForm from "./components/JoinAuthForm";
 
@@ -31,12 +30,12 @@ const variants = {
 };
 
 const AuthJoin = () => {
-  const location = useLocation(); 
+
   return (
     <>
       <AnimatePresence mode="wait">
         <motion.section
-          key={location.pathname} 
+          key={""} 
           variants={variants}
           initial="initial"
           animate="animate"

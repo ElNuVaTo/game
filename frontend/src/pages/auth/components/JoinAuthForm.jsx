@@ -7,15 +7,13 @@ import axios from "axios";
 import Input from "@/components/Input";
 
 // Iconos
-import { FaUser, FaEye, FaEyeSlash, FaDiscord } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaUser, FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Env
 const backendUrl = import.meta.env.VITE_URL_BACKEND;
 const JoinAccount = `${backendUrl}${import.meta.env.VITE_JOIN_ACCOUNT}`;
 const CreationRoom = `${backendUrl}${import.meta.env.VITE_CREATION_ROOM}`;
 const JoinRoom = `${backendUrl}${import.meta.env.VITE_JOIN_ROOM}`;
-const DiscordAuthUrl = import.meta.env.VITE_URL_DISCORD;
 
 const generarSala = () => {
   const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -208,26 +206,6 @@ const JoinAuthForm = () => {
           disabled={permitedSubmit}
         />
       </form>
-
-      <a
-        href={DiscordAuthUrl}
-        className="w-full mt-8 flex items-center justify-center gap-3 bg-[#566bf7] border-none rounded-lg shadow-md px-6 py-3 text-sm font-medium text-gray-800 hover:bg-[#4457c2] transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-      >
-        <FaDiscord className="w-5 h-5 text-white" />
-        <span className="text-white font-semibold">
-          Registrarse con discord
-        </span>
-      </a>
-
-      <a
-        href="/cat"
-        className="absolute top-[60%] gap-2  -left-20 flex justify-center items-center  rounded-full shadow-md transition duration-200 ease-in-out text-white text-lg font-bold"
-        aria-label="Volver"
-        draggable={false}
-      >
-        <IoMdArrowRoundBack />
-        <p className="text-sm">Volver</p>
-      </a>
     </div>
   );
 };

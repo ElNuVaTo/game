@@ -10,7 +10,6 @@ import Input from "@/components/Input";
 
 // Iconos
 import { FaUser, FaEye, FaEyeSlash } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import Logo from "@/assets/gatito-pregunton.webp";
 
 // Env
@@ -149,16 +148,6 @@ const Register = () => {
           value="Crear cuenta"
         />
       </form>
-
-      <a
-        href="/cat/login"
-        className="absolute top-[60%] gap-2  -left-20 flex justify-center items-center  rounded-full shadow-md transition duration-200 ease-in-out text-white text-lg font-bold"
-        aria-label="Volver"
-        draggable={false}
-      >
-        <IoMdArrowRoundBack />
-        <p className="text-sm">Volver</p>
-      </a>
     </div>
   );
 };

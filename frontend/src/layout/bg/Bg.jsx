@@ -1,4 +1,3 @@
-import d from "@/assets/Bg1.png";
 import Gatos from "@/assets/bg/cat4.jpeg";
 
 const Bg = () => {

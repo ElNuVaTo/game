@@ -32,7 +32,7 @@ const Input = ({
   }, [value, motionLabel]);
 
   const styled = clsx({
-    "-top-[13px] left-1 text-sm bg-black px-1 bg-body-color text-gray-400":
+    "-top-[23px] left-0 text-sm px-1 text-gray-400":
       motionLabel, // Posición al tener contenido
     "top-[8px] left-3 text-base text-gray-500  bg-transparent ": !motionLabel, // Posición inicial
   });

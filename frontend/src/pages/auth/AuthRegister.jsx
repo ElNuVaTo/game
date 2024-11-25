@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
 
 const variants = {
   initial: {
@@ -35,7 +34,7 @@ const AuthRegister = () => {
     <>
       <AnimatePresence mode="wait">
         <motion.section
-          key={location.pathname}
+          key={""}
           variants={variants}
           initial="initial"
           animate="animate"
