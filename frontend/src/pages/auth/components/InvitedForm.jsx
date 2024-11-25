@@ -65,7 +65,7 @@ const InvitedForm = () => {
   }, [globalName, invitedCode]);
 
   return (
-    <div className="relative items-center overflow-hidden bg-black">
+    <div className="relative items-center overflow-hidden">
       <span className="absolute top-0 left-0 z-10 w-[1.5px] h-full lineaLogin"></span>
       <span className="absolute top-0 right-0 z-10 w-[1.5px] h-full lineaLogin"></span>
 
