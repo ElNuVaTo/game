@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
+import { Outlet } from "react-router-dom"; // Importamos Outlet
 import Path from "./Path";
 
 const i = import.meta.env;
@@ -72,7 +73,7 @@ const Nav = () => {
         initial="hidden"
         animate={isVisible ? "animate" : "hidden"}
         exit="hidden"
-        className="absolute top-2  m-auto left-0 right-0 z-50 cursor-pointer w-11 h-11 text-white rounded-full p-2 select-none"
+        className="absolute top-2 m-auto left-0 right-0 z-50 cursor-pointer w-11 h-11 text-white rounded-full p-2 select-none"
         onClick={() => setIsVisible((prev) => !prev)}
       >
         <IoIosArrowDown className="h-full w-full" />
@@ -94,6 +95,8 @@ const Nav = () => {
           </motion.nav>
         )}
       </AnimatePresence>
+
+      <Outlet />
     </>
   );
 };
