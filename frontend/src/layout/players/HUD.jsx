@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
-import { fetchRoomInfo } from "./RoomInfo";
 import PlayerComponent from "./Player";
+import axios from "axios";
+
+const GetInfoRoom = import.meta.env.VITE_INFORMATION_ROOM;
 
 const PlayerHUD = () => {
   const [dataPlayers, setDataPlayers] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchRoomInfo = async () => {
       try {
-        const data = await fetchRoomInfo();
-        setDataPlayers(data.roomPlayers || []);
+        const response = await axios.get(`${GetInfoRoom}`, {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        });
+        return setDataPlayers(response.data);
       } catch (error) {
-        console.error("Error al obtener los jugadores:", error);
+        console.error("Error al obtener la información de la sala", error);
+        throw error;
       }
     };
 
-    fetchData();
+    fetchRoomInfo();
   }, []);
-
-  console.log(dataPlayers);
 
   return (
     <>
