@@ -18,6 +18,7 @@ const RoomSchema = new Schema(
         ref: "Player",
       },
     ],
+    chat: [],
     mapsSelect: [
       {
         mapId: {
