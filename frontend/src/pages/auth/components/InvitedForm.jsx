@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/gatito-pregunton.webp";
 import axios from "axios";
-import clsx from "clsx";
 import { randomPhoto } from "./randomPhoto";
 
 // Componentes
@@ -10,7 +9,6 @@ import Input from "@/components/Input";
 
 // Iconos
 import { FaUser } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 // Env
 const backendUrl = import.meta.env.VITE_URL_BACKEND;
@@ -21,7 +19,6 @@ const InvitedForm = () => {
   const navigate = useNavigate();
 
   // Estados locales para el formulario
-  const [avatar, setAvatar] = useState(randomPhoto);
   const [globalName, setGlobalName] = useState("");
   const [invitedCode, setInvitedCode] = useState("");
   const [buttonActive, setButtonActive] = useState(false);
@@ -35,7 +32,7 @@ const InvitedForm = () => {
 
     const user = {
       global_name: globalName,
-      avatar,
+      randomPhoto,
     };
 
     try {
@@ -68,7 +65,7 @@ const InvitedForm = () => {
   }, [globalName, invitedCode]);
 
   return (
-    <div className="relative p-5 px-8 py-10 w-[320px] flex flex-col items-center overflow-hidden">
+    <div className="relative items-center overflow-hidden bg-black">
       <span className="absolute top-0 left-0 z-10 w-[1.5px] h-full lineaLogin"></span>
       <span className="absolute top-0 right-0 z-10 w-[1.5px] h-full lineaLogin"></span>
 
