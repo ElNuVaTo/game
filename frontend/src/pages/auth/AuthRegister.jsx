@@ -40,7 +40,7 @@ const AuthRegister = () => {
           animate="animate"
           exit="exit"
           transition={{ duration: 0.5 }}
-          className="m-auto w-max mt-20"
+         className="w-max m-auto mt-10 md:mt-12 lg:mt-14 xl:mt-16"
         >
           <Register />
         </motion.section>
