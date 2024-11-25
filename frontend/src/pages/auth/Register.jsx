@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import FormiRegister from "./components/FormiRegister";
 
 const variants = {
   initial: {
@@ -27,22 +28,22 @@ const variants = {
   },
 };
 
-import Register from "./components/Register";
+
 
 const AuthRegister = () => {
   return (
     <>
       <AnimatePresence mode="wait">
         <motion.section
-          key={""}
+          key="RegisterAnimation"
           variants={variants}
           initial="initial"
           animate="animate"
           exit="exit"
           transition={{ duration: 0.5 }}
-         className="w-max m-auto mt-10 md:mt-12 lg:mt-14 xl:mt-16"
+          className="w-full max-w-72 m-auto mt-10 md:mt-12 lg:mt-14 xl:mt-16 overflow-hidden"
         >
-          <Register />
+          <FormiRegister />
         </motion.section>
       </AnimatePresence>
     </>

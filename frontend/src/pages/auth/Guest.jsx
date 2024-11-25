@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-import JoinAuthForm from "./components/JoinAuthForm";
+import FormGuest from "./components/FormGuest";
 
 const variants = {
   initial: {
@@ -29,25 +29,24 @@ const variants = {
   },
 };
 
-const AuthJoin = () => {
-
+const Invited = () => {
   return (
     <>
       <AnimatePresence mode="wait">
         <motion.section
-          key={""} 
+          key="InvitedAnimation"
           variants={variants}
           initial="initial"
           animate="animate"
           exit="exit"
           transition={{ duration: 0.5 }}
-          className="w-max m-auto mt-10 md:mt-12 lg:mt-14 xl:mt-16"
+          className="w-full max-w-72 m-auto mt-10 md:mt-12 lg:mt-14 xl:mt-16 overflow-hidden"
         >
-          <JoinAuthForm />
+          <FormGuest />
         </motion.section>
       </AnimatePresence>
     </>
   );
 };
 
-export default AuthJoin;
+export default Invited;
