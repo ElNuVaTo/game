@@ -116,11 +116,11 @@ const JoinAuthForm = () => {
   };
 
   return (
-    <div className="relative p-5 px-8 py-10 w-[320px] flex flex-col items-center overflow-hidden">
+    <div className="relative items-center overflow-hidden bg-black">
       <span className="absolute top-0 left-0 z-10 w-[1.5px] h-full lineaLogin"></span>
       <span className="absolute top-0 right-0 z-10 w-[1.5px] h-full lineaLogin"></span>
 
-      <header className="rounded-full w-22 h-22 m-auto mb-10 relative photoHome bg-[#383737]">
+      <header className="rounded-full w-max m-auto mb-10 relative photoHome bg-[#383737]">
         <img
           className="w-20 h-20 mx-auto rounded-full object-cover select-none p-2"
           src={Logo}
