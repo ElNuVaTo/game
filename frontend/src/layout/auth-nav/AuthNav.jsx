@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaDiscord } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
@@ -57,8 +57,6 @@ const AuthNav = () => {
           Registrarse
         </NavLink>
       </nav>
-
-      <Outlet />
     </>
   );
 };

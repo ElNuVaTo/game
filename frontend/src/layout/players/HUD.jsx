@@ -4,7 +4,7 @@ import axios from "axios";
 
 const GetInfoRoom = import.meta.env.VITE_INFORMATION_ROOM;
 
-const PlayerHUD = () => {
+const Hud = () => {
   const [dataPlayers, setDataPlayers] = useState([]);
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const PlayerHUD = () => {
   );
 };
 
-export default PlayerHUD;
+export default Hud;

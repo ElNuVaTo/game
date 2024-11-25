@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 // Layouts
 import Bg from "./layout/bg/Bg";
@@ -11,6 +11,28 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 
 import Room from "@/pages/room/Room";
+import Chat from "./layout/chat/Chat";
+import Hud from "./layout/players/HUD";
+
+const AuthLayout = () => {
+  return (
+    <>
+      <AuthNav/>
+      <Outlet />
+    </>
+  );
+};
+
+const RoomLayout = () => {
+  return (
+    <>
+      <Nav />
+      <Chat />
+      <Hud />
+      <Outlet />
+    </>
+  );
+};
 
 const App = () => {
   return (
@@ -19,13 +41,13 @@ const App = () => {
         <Bg />
 
         <Routes>
-          <Route element={<AuthNav />}>
+          <Route element={<AuthLayout />}>
             <Route path="" index element={<Guest />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>
 
-          <Route path="room" element={<Nav />}>
+          <Route path="room" element={<RoomLayout />}>
             <Route path=":code" element={<Room />} />
             <Route path=":code/in-game" element={<Room />} />
           </Route>

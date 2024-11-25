@@ -33,7 +33,10 @@ const Chat = () => {
 
             return (
               <div key={index} className="flex w-full bg-black">
-                <p className="chat-author-colored text-balance" data-before={`${name} :`}>
+                <p
+                  className="chat-author-colored text-balance"
+                  data-before={`${name} :`}
+                >
                   {" "}
                   {message}
                 </p>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
-import { Outlet } from "react-router-dom"; // Importamos Outlet
 import Path from "./Path";
 
 const i = import.meta.env;
@@ -95,8 +94,6 @@ const Nav = () => {
           </motion.nav>
         )}
       </AnimatePresence>
-
-      <Outlet />
     </>
   );
 };
