@@ -3,7 +3,7 @@ import Player from "../../models/player.js";
 // Crear un nuevo usuario
 const creation = async (req, res) => {
   try {
-    const { global_name, username, password, avatar, id } = req.body;
+    const { global_name, username, password, avatarUrl, id } = req.body;
 
     if (!global_name) {
       return res.status(400).json({
@@ -23,9 +23,9 @@ const creation = async (req, res) => {
       });
     }
 
-    if (!avatar) {
+    if (!avatarUrl) {
       return res.status(400).json({
-        message: "Falta el avatar",
+        message: "Falta el avatarUrl",
       });
     }
 
@@ -46,7 +46,7 @@ const creation = async (req, res) => {
 
     const newUser = new Player({
       global_name,
-      avatar,
+      avatarUrl,
       role: "user",
       username,
       password,

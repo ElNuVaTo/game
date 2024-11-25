@@ -1,13 +1,12 @@
 import Player from "../../models/player.js";
 
 const createUser = async (req, res, next) => {
-  const { global_name, avatar, type } = req.body;
+  const { global_name, avatarUrl, type } = req.body;
 
-  
   try {
     const newUser = new Player({
       global_name,
-      avatar,
+      avatarUrl,
     });
 
     // Guardamos al usuario

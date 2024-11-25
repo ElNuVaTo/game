@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 // Esquema principal del jugador
 const PlayerSchema = new Schema(
   {
-    avatar: {
+    avatarUrl: {
       type: String,
       required: [true, "Falta la foto del usuario"],
     },
