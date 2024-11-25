@@ -1,20 +1,23 @@
 import { useEffect, useState, useId } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
 const Input = ({
-  type,
-  label,
-  name,
-  required,
-  onChange,
-  value,
-  validation,
-  errMessage,
-  inputConfig,
-  children,
-  padding,
+  type, // Required!
+  label, // Required!
+  name, // Required!
+  required, // Required!
+  onChange, // Required!
+  value, // Required!
+
+  inputConfig, // Agregar mas propieades al input
+
+  children, // Para mostrar el icono
+
+  buttonActive, // Bool que indicara si se puede hacer click o no
+  buttonText, // El texto que se mostrara en el boton
+
+  iconComponent, // Bool ¿se usara un button o un icono?
 }) => {
   if (!type) console.error('Falta el prop "type"');
   if (!label) console.error("Texto que actua como placeholder");
@@ -32,18 +35,17 @@ const Input = ({
   }, [value, motionLabel]);
 
   const styled = clsx({
-    "-top-[23px] left-0 text-sm px-1 text-gray-400":
-      motionLabel, // Posición al tener contenido
-    "top-[8px] left-3 text-base text-gray-500  bg-transparent ": !motionLabel, // Posición inicial
+    "-top-[23px] left-0 text-sm px-1 text-gray-400": motionLabel, // Posición al tener contenido
+    "m-auto top-0 bottom-0  left-3 text-base text-gray-500": !motionLabel, // Posición inicial
   });
 
   return (
     <>
       <div className="bg-transparent w-full max-w-72 rounded-md relative">
         <input
-          className={`${children ? padding : "pr-0"} ${
+          className={`${
             !motionLabel ? "border-second-color" : "border-second-color-focus"
-          } p-2 px-3 w-full h-full rounded-md text-white bg-transparent border border-solid text-sm font-normal`}
+          } py-2.5 px-3 w-full h-full rounded-md text-white bg-transparent border border-solid text-sm font-normal md:py-2`}
           type={type}
           id={id}
           name={name}
@@ -55,26 +57,25 @@ const Input = ({
 
         <label
           htmlFor={id}
-          className={`${styled} absolute text-sm transition-all duration-150 ease-in-out select-none cursor-text`} // También añadir font-medium al label
+          className={`${styled} h-max absolute text-sm transition-all duration-150 ease-in-out select-none cursor-text`} // También añadir font-medium al label
         >
           {label}
         </label>
 
-        {children && <>{children}</>}
-
-        <AnimatePresence>
-          {validation && (
-            <motion.span
-              key="Alert"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              layout
-              className="absolute text-wrap  text-red-500  top-12 text-normal w-full left-0 text-center  text-sm"
-            >
-              <p className="font-normal">{errMessage}</p>
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {!iconComponent ? (
+          <button
+            type="submit"
+            className={`absolute top-0 right-0 h-full flex items-center justify-center rounded-r-md w-24 bg-second-color text-sm font-medium ${
+              buttonActive ? "bg-second-color" : "bg-second-color-focus"
+            }`}
+          >
+            {buttonText}
+          </button>
+        ) : (
+          <span className="absolute right-3 m-auto top-0 bottom-0 h-max icons-color">
+            {children}
+          </span>
+        )}
       </div>
     </>
   );
@@ -88,43 +89,12 @@ Input.propTypes = {
   required: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  validation: PropTypes.bool,
-  errMessage: PropTypes.string,
+
   inputConfig: PropTypes.object,
+  iconComponent: PropTypes.bool,
+  buttonActive: PropTypes.bool,
+  buttonText: PropTypes.string,
   children: PropTypes.node,
-  padding: PropTypes.node,
 };
-
-// Ejemplo de uso del componente con `inputConfig`
-// const inputConfig = {
-//   maxLength: 50,
-//   placeholder: "Introduce tu nombre",
-//   readOnly: true,
-// };
-
-// <Input
-//   type="text"
-//   label="Nombre"
-//   id="username"
-//   name="username"
-//   required={true}
-//   onChange={handleChange}
-//   value={inputValue}
-//   inputConfig={inputConfig}
-// />
-
-// Resultado final
-// <input
-// class="p-2 w-full h-full rounded-md text-white"
-// type="text"
-// id="username"
-// name="username"
-// required
-// onChange="..."
-// value="..."
-// maxLength="50"
-// placeholder="Introduce tu nombre"
-// readOnly
-// />
 
 export default Input;
