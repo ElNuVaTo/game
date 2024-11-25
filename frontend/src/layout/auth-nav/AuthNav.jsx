@@ -1,49 +1,63 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { FaDiscord } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
-const AuthURL = import.meta.env.VITE_REDIRECT_URL;
+const AuthDiscord = import.meta.env.VITE_AUTHORIZE_URL;
 
 const AuthNav = () => {
   const location = useLocation();
-  const pathName = location.pathname;
+  const [discordActive, setDiscordActive] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === "/register") {
+      setDiscordActive(true);
+    } else {
+      setDiscordActive(false);
+    }
+  }, [location.pathname]);
+
+  useEffect;
 
   return (
     <>
-      <nav className="absolute bottom-5 left-0 w-full select-none flex flex-col items-center py-4 z-10 gap-6">
-        {/* Botón de "Jugar como invitado" */}
-        {pathName !== "/" && (
-          <Link
-            to="/"
-            className="text-white bg-slate-800 font-medium text-sm px-3 py-2 rounded-md shadow hover:bg-slate-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1"
-            aria-label="Volver al inicio"
-            draggable={false}
-          >
-            Jugar como invitado
-          </Link>
-        )}
+      <nav className="w-full max-w-64 xl:max-w-2xl flex flex-col xl:justify-evenly xl:flex-row gap-5 p-5 rounded-xl z-40 m-auto left-0 right-0 transition-all duration-500 ease-in-out xl:bottom-8 absolute bottom-5">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `text-white w-full max-w-52 ${
+              isActive ? "bg-blue-600" : "bg-slate-600"
+            } py-2 px-4 font-medium text-sm w-full text-center rounded-xl`
+          }
+          aria-label="Comienza como invitado"
+          draggable={false}
+        >
+          Comienza como invitado
+        </NavLink>
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            `text-white w-full max-w-52 ${
+              isActive ? "bg-blue-600" : "bg-slate-600"
+            } py-2 px-4 font-medium text-sm w-full text-center rounded-xl`
+          }
+          aria-label="Iniciar sesión"
+          draggable={false}
+        >
+          Entrar a mi cuenta
+        </NavLink>
 
-        {/* Botón de "Iniciar sesión" */}
-        {pathName !== "/login" && (
-          <Link
-            to="/login"
-            className="text-white bg-slate-600 font-medium text-sm px-3 py-2 rounded-md shadow hover:bg-blue-700 hover:shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1"
-            aria-label="Iniciar sesión"
-            draggable={false}
-          >
-            Iniciar sesión
-          </Link>
-        )}
-
-        {/* Botón de "Registrarse con Discord" */}
-        <Link
-          to={AuthURL}
-          className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm py-2 px-4 rounded-md shadow-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-400"
+        <NavLink
+          to={AuthDiscord}
+          className={`flex items-center justify-center gap-2 w-full max-w-52 ${
+            discordActive ? "bg-blue-600" : "bg-slate-600"
+          } text-white font-medium text-sm py-2 px-4 rounded-xl`}
           draggable={false}
         >
           <FaDiscord className="w-5 h-5" />
-          Registrarse con Discord
-        </Link>
+          Registrarse
+        </NavLink>
       </nav>
+
       <Outlet />
     </>
   );
